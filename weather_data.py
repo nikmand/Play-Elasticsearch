@@ -8,14 +8,13 @@ if __name__ == "__main__":
 
     api_onecall_url = '{}?lat={}&lon={}&units=metric&appid={}'.format(weather_onecall_url, athens_lat, athens_lon,
                                                                    weather_api_key)
-    r = requests.get(api_onecall_url)
+    response = requests.get(api_onecall_url).json()
 
-    #r = requests.get('https://api.openweathermap.org/data/2.5/weather?q=Athens&units=metric&appid=37f8760f173fb36efa9d6a5ba8a3b705')
+    # current = response['current']
+    daily_forecasts = response['daily']
+    hourly_forecasts = response['hourly']
 
-    print(r.json())
-
-    daily_forecasts = r.json()['daily']
-    hourly_forecasts = r.json()['hourly']
+    daily_forecasts["dt"] = datetime.fromtimestamp(daily_forecasts["dt"])
 
     es = Elasticsearch(cloud_id=cluster_id, http_auth=("elastic", cluster_pwd))
 
@@ -33,7 +32,6 @@ if __name__ == "__main__":
     #response = es.indices.create(index=weather_index, body=mapping)
 
     for daily_forecast in daily_forecasts:
-        # print(daily_forecast)
         es.index(index=weather_index_daily, doc_type='docket', body=daily_forecast)
 
     for hourly_forecast in hourly_forecasts:
