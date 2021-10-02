@@ -1,4 +1,4 @@
-directory = '/home/nikmand/Downloads/ubitech_tech_challenge'
+directory = 'input_files'
 index_name = "datamodel"
 cluster_id = "i-o-optimized-deployment:ZnJhbmNlY2VudHJhbC5henVyZS5lbGFzdGljLWNsb3VkLmNvbTo5MjQzJDllYjIzOTc4ZDE0NDQ2ODM5NjIzZDQ1YTRmMzhlMmM4JDdiYzQ0ZTI3MzBjMzQzN2RiN2FjYzUxMWIyZTdhNTFj"
 cluster_pwd = "92G8QuO5mR0NlWEWl33CxrE6"

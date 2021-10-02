@@ -24,7 +24,8 @@ def preprocess_data_sources(directory_path):
 
 if __name__ == "__main__":
 
-    es = Elasticsearch(cloud_id=cluster_id, http_auth=("elastic", cluster_pwd))
+    # elastic search in a docker container can be used, or a deployment on cloud
+    es = Elasticsearch()  # (cloud_id=cluster_id, http_auth=("elastic", cluster_pwd))
 
     if es.ping():
         print("Connection with Elasticsearch was established.")
